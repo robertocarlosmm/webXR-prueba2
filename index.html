@@ -1,13 +1,38 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ExplorAR Perú</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <!-- Canvas 3D -->
+  <canvas id="app"></canvas>
+
+  <!-- LOBBY -->
+  <div id="lobby" class="screen is-active">
+    <h1>ExplorAR Perú</h1>
+    <div class="buttons">
+      <button id="btn-play">Jugar</button>
+      <button id="btn-album">Álbum</button>
+    </div>
+    <p class="note">Juega en un espacio despejado.</p>
+  </div>
+
+  <!-- HUD AR (DOM Overlay) -->
+  <div id="hud" class="hud hidden">
+    <div class="topbar">
+      <span id="shape-label">Esfera</span>
+      <button id="btn-exit">Salir</button>
+    </div>
+    <div class="center-msg" id="center-msg">Mueve el teléfono para detectar una superficie</div>
+    <div class="bottombar">
+      <button id="btn-prev">←</button>
+      <button id="btn-next">→</button>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>
