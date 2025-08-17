@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-basic-ssl": "^2.1.0",
-    "vite": "^7.1.2"
+    "vite": "^7.1.2",
+    "vite-plugin-mkcert": "^1.17.8"
   },
   "dependencies": {
     "@babylonjs/core": "^8.23.1",

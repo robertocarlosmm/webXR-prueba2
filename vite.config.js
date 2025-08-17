@@ -1,7 +1,10 @@
 import { defineConfig } from 'vite'
-import basicSsl from '@vitejs/plugin-basic-ssl'
+import mkcert from 'vite-plugin-mkcert'
 
 export default defineConfig({
-    plugins: [basicSsl()],
-    server: { https: true, host: true } // expone en LAN y con https
+    plugins: [mkcert()],
+    server: {
+        https: true,
+        host: true,                       // expone en la red local
+    }
 })
