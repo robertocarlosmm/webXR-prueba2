@@ -1,22 +1,168 @@
-:root { --sp:12px; --font: clamp(16px, 2.3vw, 18px); }
-* { box-sizing: border-box; }
-body { margin:0; font-family: system-ui; font-size: var(--font); }
-#app { position: fixed; inset: 0; background:#000; }
+:root {
+  --sp: 12px;
+  --font: clamp(16px, 2.3vw, 18px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui;
+  font-size: var(--font);
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  background: #000;
+}
 
 /* Lobby */
-.screen { position:fixed; inset:0; display:none; padding:24px; background: #fff;
-  display:grid; grid-template-rows:auto 1fr auto; gap: var(--sp); place-items:center; }
-.screen.is-active { display:grid; }
-.buttons { display:grid; gap: var(--sp); width: min(420px, 90vw); }
-.buttons button { padding: 14px; font-size: 1rem; }
-.note { opacity: .8; text-align: center; }
+.screen {
+  position: fixed;
+  inset: 0;
+  display: none;
+  padding: 24px;
+  background: #fff;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--sp);
+  place-items: center;
+}
+
+.screen.is-active {
+  display: grid;
+}
+
+.buttons {
+  display: grid;
+  gap: var(--sp);
+  width: min(420px, 90vw);
+}
+
+.buttons button {
+  padding: 14px;
+  font-size: 1rem;
+}
+
+.note {
+  opacity: .8;
+  text-align: center;
+}
 
 /* HUD AR */
-.hud { position:fixed; inset:0; pointer-events:none; }
-.hud.hidden { display:none; }
-.topbar, .bottombar { pointer-events:auto; position:fixed; left:8px; right:8px;
-  display:flex; gap:8px; align-items:center; }
-.topbar { top: env(safe-area-inset-top, 8px); justify-content:space-between; }
-.bottombar { bottom: calc(env(safe-area-inset-bottom,8px) + 8px); justify-content:center; }
-.center-msg { position:fixed; inset:0; display:grid; place-items:center; pointer-events:none; text-align:center; color:#fff; text-shadow:0 1px 3px #000; }
-button { padding:12px 16px; font-size:18px; }
+.hud {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hud.hidden {
+  display: none;
+}
+
+.topbar,
+.bottombar {
+  pointer-events: auto;
+  position: fixed;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.topbar {
+  top: env(safe-area-inset-top, 8px);
+  justify-content: space-between;
+}
+
+.bottombar {
+  bottom: calc(env(safe-area-inset-bottom, 8px) + 8px);
+  justify-content: center;
+}
+
+.center-msg {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 1px 3px #000;
+}
+
+button {
+  padding: 12px 16px;
+  font-size: 18px;
+}
+
+/* --- Photo Studio --- */
+.photo-screen.hidden {
+  display: none;
+}
+
+.photo-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+  z-index: 50;
+  /* por encima del lobby/hud */
+}
+
+/* vídeo al fondo, a pantalla completa */
+#photo-video,
+#photo-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* overlay tiene alpha; si luego quieres gestos, pon touch-action:none y z-index mayor */
+#photo-overlay {
+  pointer-events: none;
+}
+
+/* barras de UI */
+.photo-topbar,
+.photo-bottombar {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: auto;
+  z-index: 60;
+}
+
+.photo-topbar {
+  top: env(safe-area-inset-top, 12px);
+  justify-content: space-between;
+  color: #fff;
+}
+
+.photo-bottombar {
+  bottom: calc(env(safe-area-inset-bottom, 12px) + 12px);
+  justify-content: center;
+}
+
+.photo-topbar button,
+.photo-bottombar button {
+  background: rgba(0, 0, 0, .6);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .2);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+#photo-capture {
+  font-weight: 700;
+}

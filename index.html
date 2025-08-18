@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>ExplorAR Perú</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
+
 <body>
   <!-- Canvas 3D -->
   <canvas id="app"></canvas>
@@ -33,6 +35,25 @@
     </div>
   </div>
 
+  <!-- Pantalla Photo Studio (oculta por defecto) -->
+  <div id="photo-screen" class="photo-screen hidden">
+    <video id="photo-video"></video>
+    <canvas id="photo-overlay"></canvas>
+
+    <div class="photo-topbar">
+      <button id="photo-back" type="button" title="Volver">←</button>
+      <span id="photo-label">Esfera</span>
+    </div>
+
+    <div class="photo-bottombar">
+      <button id="photo-prev" type="button" title="Anterior">←</button>
+      <button id="photo-capture" type="button" title="Tomar foto">Tomar foto</button>
+      <button id="photo-next" type="button" title="Siguiente">→</button>
+    </div>
+  </div>
+
+
   <script type="module" src="/src/main.js"></script>
 </body>
+
 </html>

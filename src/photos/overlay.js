@@ -1,7 +1,8 @@
 // @ts-check
 import { Engine } from "@babylonjs/core/Engines/engine.js";
 import { Scene } from "@babylonjs/core/scene.js";
-import { FreeCamera, Camera } from "@babylonjs/core/Cameras";
+import { FreeCamera } from "@babylonjs/core/Cameras/freeCamera.js";
+import { Camera } from "@babylonjs/core/Cameras/camera.js";
 import { Color4 } from "@babylonjs/core/Maths/math.color.js";
 import { Vector3 } from "@babylonjs/core/Maths/math.vector.js";
 import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight.js";
@@ -24,11 +25,14 @@ export function startPhotoOverlay(canvas, videoW, videoH) {
 
     // Cámara ortográfica con “unidades en px” (coinciden con el video)
     const cam = new FreeCamera("cam", new Vector3(0, 0, 1), scene);
+    cam.setTarget(Vector3.Zero());            // asegura que mira al origen
     cam.mode = Camera.ORTHOGRAPHIC_CAMERA;
     cam.orthoLeft = -videoW / 2;
     cam.orthoRight = videoW / 2;
     cam.orthoTop = videoH / 2;
     cam.orthoBottom = -videoH / 2;
+    cam.minZ = 0.001;                         // recortes seguros
+    cam.maxZ = 10;
 
     new HemisphericLight("h", new Vector3(0, 1, 0), scene);
 
@@ -45,6 +49,10 @@ export function startPhotoOverlay(canvas, videoW, videoH) {
         const m = new StandardMaterial("m", scene);
         const palette = ["#4CAF50", "#FF9800", "#2196F3"].map(h => Color3.FromHexString(h));
         m.diffuseColor = palette[i % palette.length];
+        // Para que se vea SIEMPRE (aunque la luz sea floja):
+        m.disableLighting = true;               // ignora luces
+        m.emissiveColor = palette[i % palette.length];
+        // (si quieres luz real, quita disableLighting y usa diffuseColor)
         return m;
     }
 
