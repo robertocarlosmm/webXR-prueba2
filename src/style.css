@@ -124,9 +124,13 @@ button {
   object-fit: cover;
 }
 
-/* overlay tiene alpha; si luego quieres gestos, pon touch-action:none y z-index mayor */
-#photo-overlay {
-  pointer-events: none;
+/* orden de apilado dentro de la pantalla de foto */
+#photo-video   { z-index: 0; } /* fondo */
+#photo-overlay { 
+  z-index: 1;                 /* canvas 3D encima del video */
+  pointer-events: none;       /* no intercepta clics (sirve si la UI está encima) */
+  /* si luego agregas gestos: quita pointer-events:none y añade touch-action:none */
+  /* touch-action: none; */
 }
 
 /* barras de UI */
